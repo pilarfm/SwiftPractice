@@ -1,0 +1,110 @@
+Question #1
+
+struct Tutorial {
+  var difficulty: Int = 1
+}
+
+var tutorial1 = Tutorial()
+var tutorial2 = tutorial1
+tutorial2.difficulty = 2
+
+What are the values of tutorial1.difficulty and tutorial2.difficulty? Would this be any different if Tutorial was a class? Why or why not?
+
+ANSWER:  TUTORIAL1.DIFFICULTY=1 AND TUTORIAL2.DIFFICULTY=2   THIS IS BECAUSE IN A SCRUCT THE VALUES GET COPIED, BUT DOESN'T CHANGE THE HEAP
+         IF TUTORIAL WAS A CLASS, BOTH VALUES WOULD BECOME 2 BECAUSE CLASSES ARE REFERENCE TYPES WHICH MEANS THEY HAVE POINTERS TO THE HEAP.
+         
+RIGHT ANSWER
+___________________________________________________________________________________________________________________________________________________
+
+Question #2
+You’ve declared view1 with var, and you’ve declared view2 with let. What’s the difference, and will the last line compile?
+
+import UIKit
+
+var view1 = UIView()
+view1.alpha = 0.5
+
+let view2 = UIView()
+view2.alpha = 0.5 // Will this line compile?
+
+ANSWER:  EN EL PRIMER CASO ESTAMOS DECLARANDO UNA VARIABLE, Y EN EL SEGUNDO CASO UNA CONSTANTE. LOS VALORES DE UNA CONSTANTE NO SE PUEDEN ALTERAR, PERO EN ESE CASO
+SE ESTA ASIGNANDO POR PRIMERA VEZ EL VALOR DE VIEW2.ALPHA POR LO QUE CREO QUE SI VA A COMPILAR
+
+RESPONDI BIEN  ( pregunta: cambia en algo que sea una propiedad de una clase, es decir, podria yo volverle a asignar un valor a view2.alpha??)
+
+________________________________________________________________________________________________________________________________________________________
+
+Question #3
+This complicated code sorts an array of names alphabetically. Simplify the closure as much as you can.
+
+var animals = ["fish", "cat", "chicken", "dog"]
+animals.sort { (one: String, two: String) -> Bool in
+    return one < two
+}
+print(animals)
+
+ANSWER: ESTA ES UNA MANERA, OMITIENDO EL TIPO DE DATO
+animals.sort{ (one,two) in 
+    return one < two
+
+}
+UNA MANERA MAS SIMPLE AUN ES CAMBIAR LAS VARIABLES ONE Y TWO POR NUMEROS 
+
+animals.sort{ $0 < $1}
+
+RESPONDI BIEN --> pregunta( closures son como arrow functions en javascript??)
+
+
+_____________________________________________________________________________________________________________________________________________________________
+Question #4
+This code creates two classes: Address and Person. It then creates two Person instances to represent Ray and Brian.
+
+class Address {
+  var fullAddress: String
+  var city: String
+  
+  init(fullAddress: String, city: String) {
+    self.fullAddress = fullAddress
+    self.city = city
+  }
+}
+
+class Person {
+  var name: String
+  var address: Address
+  
+  init(name: String, address: Address) {
+    self.name = name
+    self.address = address
+  }
+}
+
+var headquarters = Address(fullAddress: "123 Tutorial Street", city: "Appletown")
+var ray = Person(name: "Ray", address: headquarters)
+var brian = Person(name: "Brian", address: headquarters)
+
+Suppose Brian moves to the new building across the street; you'll want to update his record like this:
+
+      brian.address.fullAddress = "148 Tutorial Street"
+
+This compiles and runs without error. If you check the address of Ray now, he's also moved to the new building.
+
+      print (ray.address.fullAddress)
+
+What's going on here? How can you fix the problem?
+
+
+
+ANSWER:  EL PROBLEMA ES QUE  AL ASIGNARLE UNA DIRECCION NUEVA A BRIAN ESTAMOS ACCEDIENDO AL ATRIBUTO FULLADDRESS QUE PERTENECE A LA CLASE ADDRESS, Y ESTAMOS CAMBIANDO EL VALOR 
+DE LA VARIABLE HEADQUARTERS, ENTONCES POR ESO CAMBIA EN LOS DOS CASOS.
+
+SOLUCION: var newBuilding = Address(fullAddress:"148 tutorial street", city:"Appletown")        
+          brian.address = newBuilding
+AHORA SI IMPRIMIMOS: 
+             print(brian.address.fullAddress)    da "148 tutorial street"
+              print(ray.address.fullAddress)      da "123 tutorial street"
+
+RESPONDI BIEN, falto otra opcion posible que seria cambiar a struct
+___________________________________________________________________________________________________-
+
+
