@@ -1,0 +1,116 @@
+Question #1
+What's the difference between nil and .none?   // tuve que buscarlo
+
+SON EQUIVALENTES
+
+_____________________________________________________________________________________-
+
+Question #2
+Here's a model of a thermometer as a class and a struct. The compiler will complain about the last line. Why does it fail to compile?
+
+public class ThermometerClass {
+  private(set) var temperature: Double = 0.0
+  public func registerTemperature(_ temperature: Double) {
+    self.temperature = temperature
+  }
+}
+
+let thermometerClass = ThermometerClass()
+thermometerClass.registerTemperature(56.0)
+
+public struct ThermometerStruct {
+  private(set) var temperature: Double = 0.0
+  public mutating func registerTemperature(_ temperature: Double) {
+    self.temperature = temperature
+  }
+}
+
+let thermometerStruct = ThermometerStruct()
+thermometerStruct.registerTemperature(56.0)
+
+
+ANSWER: NO SE PUEDE USAR UN INMUTABLE COMO LET Y ASIGNARLE UN VALOR EN UN STRUCT.
+SE DEBE USAR UN VAR
+
+_________________________________________________________________________________
+
+Question #3
+What will this code print and why?
+
+var thing = "cars"
+
+let closure = { [thing] in
+  print("I love \(thing)")
+}
+
+thing = "airplanes"
+
+closure()
+
+ANSWER: IMPRIME "I LOVE CARS" POR EL CAPTURE [THING] QUE HACE QUE EL VALOR ACTUAL DE THING SE COPIE EN CLOSURE CUANDO SE DEFINE LA FUNCION
+
+__________________________________________________________________________________
+
+Question #4
+
+NO ME SALIO
+
+__________________________________________________________________________________
+
+
+ Question #5
+ Here's a function to divide two optional doubles. There are three preconditions to verify before performing the actual division:
+
+The dividend must contain a non nil value.
+The divisor must contain a non nil value.
+The divisor must not be zero.
+
+func divide(_ dividend: Double?, by divisor: Double?) -> Double? {
+  if dividend == nil {
+    return nil
+  }
+  if divisor == nil {
+    return nil
+  }
+  if divisor == 0 {
+    return nil
+  }
+  return dividend! / divisor!
+}
+
+ANSWER:
+
+func divide(_ dividend: Double?, by divisor: Double?) -> Double? {
+  guard let dividend = dividend else {return nil}
+  
+  guard let divisor = divisor else {return nil}
+  
+  guard divisor != 0 else {return nil}
+  
+  return dividend/divisor
+}
+________________________________________________________________________________--
+
+Question #6
+Rewrite the method from question five using an if let statement.
+
+
+func divide(_ dividend: Double?, by divisor: Double?) -> Double? {          //siempre el if let es con = y no con !=
+  
+  if let dividend = dividend, let divisor = divisor, divisor != 0 {
+      return dividend / divisor
+  } 
+  else {
+    return nil
+  }
+}
+
+
+
+
+
+
+
+
+
+
