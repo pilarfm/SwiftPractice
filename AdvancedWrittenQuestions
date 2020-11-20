@@ -1,0 +1,34 @@
+Question #1
+Consider the following structure that models a thermometer:
+
+public struct Thermometer {
+  public var temperature: Double
+  public init(temperature: Double) {
+    self.temperature = temperature
+  }
+}
+
+To create an instance, you can use this code:
+
+var t: Thermometer = Thermometer(temperature:56.8)
+
+But it would be nicer to initialize it this way:
+
+var thermometer: Thermometer = 56.8
+
+Can you? How?
+
+
+ANSWER: SE PODRIA REALIZAR ESTO MEDIANTE LA UTILIZACION DE UN PROTOCOLO, QUE PERMITE INICIALIZAR UN TIPO UTILIZANDO LA ASIGNACION.
+
+POSIBLE SOLUCION
+
+extension Thermometer: ExpressibleByFloatLiteral {
+  public init(floatLiteral value: FloatLiteralType) {
+    self.init(temperature: value)
+  }
+}
+ENTONCES LUEGO SE PUEDE INICIALIZAR:
+var thermometer: Thermometer = 56.8
+
+_______________________________________________________________________________________________________
