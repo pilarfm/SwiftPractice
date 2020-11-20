@@ -1,0 +1,44 @@
+Question #1
+In Objective-C, you declare a constant like this:
+
+const int number = 0;
+
+Here is the Swift counterpart:
+
+let number = 0
+
+What are the differences between them?
+
+
+ANSWER: LAS CONSTANTES EN SWIFT SE DECLARAN CON LET, Y SE PUEDEN INICIALIZAR DE MANERA ESTATICA O DINAMICA. 
+SOLO PUEDE ASIGNARSE ESTE VALOR UNA UNICA VEZ.
+_______________________________________________________________________________________________________________________________________
+
+
+Question #2
+To declare a static property or function, you use the static modifier on value types. Here's an example for a structure:
+
+struct Sun {
+  static func illuminate() {}
+}
+
+For classes, it's possible to use either the static or the class modifier. They achieve the same goal, but in different ways. Can you explain how they differ?
+
+ANSWER:
+UTILIZANDO STATIC, NO SE PUEDE SOBREESCRIBIR EL METODO
+UTILIZANDO CLASS, SI SE PUEDE.
+__________________________________________________________________________________________________________________________________________
+
+Question #3
+Can you add a stored property to a type by using an extension? How or why not?
+
+NO ES POSIBLE.  YA QUE LAS EXTENSIONES SON PARA AGREGAR FUNCIONALIDAD A UN TIPO YA EXISTENTE, PERO NO SE PUEDE ALTERAR NI MODIFICAR NADA DE LO UQE YA EXISTE.
+
+_________________________________________________________________________________________________________________________________________
+
+
+Question #4
+What is a protocol in Swift?
+
+
+ES UN TIPO DE DATO (COMO CLASS, STRUCT O ENUM) QUE NO TIENE UNA FUNCIONALIDAD POR SI MISMA PERO SI DEFINE UNA FUNCIONALIDAD, QUE DEBE CUMPLIRSE
